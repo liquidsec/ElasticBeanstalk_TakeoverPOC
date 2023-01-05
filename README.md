@@ -1,0 +1,2 @@
+# ElasticBeanstalk
+nginx + php example
