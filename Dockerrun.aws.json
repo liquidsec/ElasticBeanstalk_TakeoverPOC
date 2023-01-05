@@ -1,0 +1,65 @@
+{
+  "AWSEBDockerrunVersion": 2,
+  "volumes": [
+    {
+      "name": "php",
+      "host": {
+        "sourcePath": "/var/app/current/php"
+      }
+    },
+    {
+      "name": "nginx",
+      "host": {
+        "sourcePath": "/var/app/current/nginx"
+      }
+    }  
+  ],
+  "containerDefinitions": [
+    {
+      "name": "php",
+      "image": "php:fpm",
+      "essential": true,
+      "memory": 128,
+	  "portMappings": [
+        {
+          "hostPort": 9000,
+          "containerPort": 9000
+        }
+      ],
+      "mountPoints": [
+        {
+          "sourceVolume": "php",
+          "containerPath": "/var/www/html",
+          "readOnly": true
+        }
+      ]
+    },
+    {
+      "name": "nginx",
+      "image": "nginx",
+      "essential": true,
+      "memory": 128,
+      "portMappings": [
+        {
+          "hostPort": 80,
+          "containerPort": 80
+        }
+      ],
+      "links": [
+        "php"
+      ],
+      "mountPoints": [
+        {
+          "sourceVolume": "php",
+          "containerPath": "/var/www/html",
+          "readOnly": true
+        },
+        {
+          "sourceVolume": "nginx",
+          "containerPath": "/etc/nginx/conf.d",
+          "readOnly": true
+        }
+      ]
+    }
+  ]
+}
