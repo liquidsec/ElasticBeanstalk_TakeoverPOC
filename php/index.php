@@ -1,8 +1,8 @@
 <html>
 <head>
-<title>PHP Test</title>
+<title>Synack Subdomain Takeover PoC</title>
 </head>
 <body>
-<?php echo '<p>Hello World</p>'; ?>
+<?php echo '<p>Synack Subdomain Takeover POC</p>'; ?>
 </body>
 </html>
